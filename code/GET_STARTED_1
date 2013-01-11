@@ -1,0 +1,70 @@
+
++****************************************************************************************************************************************************
++       HEADSTART
++----------------------------
+
+Here is the minimal set of actions required prior to start using psom.
+
+* step 1: Select the compiler you want to use. To do that, please edit the ./optfile to set the compiler you will use:       fcomp=...  (ifort, pgf95 etc.)
+
+* step 2: By default, psom will produce both binary files and netcdf files. If you do not have netcdf library installed or do not want to use netcdf files, 
+
+    - edit the file ./optfile          and set define_netcdf to F.
+    - edit the file ./model/inc/cppdef and undefine output_netcdf: 
+            #define file_output_cdf   by default
+            #undef file_output_cdf    if you do not want to use netcdf.
+
+   These two actions will disable the netcdf output.
+
+Once you have done that, you simply follow the "configure, compile, run" sequence:
+
+* step 3: Configure.
+    
+    sh tools/configure.sh
+
+* step 4: Compile.
+
+    sh tools/compile.sh
+
+* step 5: Run.
+
+    ./exe/nh < ./namelist
+
+
+You are done !
+
+
+
++****************************************************************************************************************************************************
+
+Some explanations:
+
+* Step 3 will search for makedepend (necessary to create the makefile). The script will stop if makedepend is not installed.
+   If you chose to use netcdf, step2 will also search for nc-config. The code has been tested with netcdf4 libraries.
+    - if nc-config is present, it will make use of it to get the rights links.
+    - if not, you should link yourself by editing the ./optfile before step3.
+  Step 3 has two effects:
+    - It modifies ./optfile
+    - It modifies ./namelist
+
+  To sum up, if step 3 fails, you might have to install makedepend or install netcdf libraries (in case you want to use netcdf output).
+  After having done that, repeat step 3. 
+
+* Step 4 will 
+    - create the makefile in ./mkfile
+    - compile
+
+
+* Step 5 will start and run the model.
+  By default, the output will appear on the screen and the output files will go to ../output/.
+  By default, namelist has some values you might want to change. You can of course change these values by editing namelist and repeat step 4.
+
+
+If you want to customize later your use of the model, you can of course change manually the ./optfile and ./namelist files.
+
+========================================================================================
+
+The next step is to make your own simulations. To do that, please refer to GET_STARTED_2.
+
+
+
