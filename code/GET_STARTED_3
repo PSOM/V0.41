@@ -14,8 +14,9 @@ Here are some procedures you might want to follow in order to run your own simul
 -------
 CASE 1: You want to have control over the netcdf library options.
 
-  Follow the standard procedure detailed in GET_STARTED. 
+  Follow the standard procedure detailed in GET_STARTED_1. 
   Between the "configure" and "compile" steps, edit the ./optfile to set the options that fit your environment. Be careful with the syntax ! 
+
 
 --------
 CASE 2a: You do not want to use netcdf output:
@@ -32,6 +33,7 @@ CASE 2a: You do not want to use netcdf output:
       #undef file_output_cdf    if you do not want to use netcdf.
 
    That should be it !
+
 
 --------
 CASE 2b: You do not want to use binary output:
@@ -50,6 +52,7 @@ CASE 3: Two ways of not using the superceding trick:
 
   If you wish not to use the superceding trick, you can alternatively use tools/compile_simple.sh
   Note that by default, sh tools/compile.sh without any argument will use code/model_build as the superseding directory. If this directory does not contain any file, it will compile the standard version of the model.
+
 
 -------
 CASE 4: You want to change the grid size.
@@ -85,6 +88,10 @@ CASE 6: You want to do some cleaning of the ./mkfile directory.
    To clean up a bit the mkfile directory, you can use
 
    # make -Cmkfile/ clean 
+   
+   or
+
+   # sh tools/clean.sh
 
    Use cleanmore instead of clean to also remove the executable file. 
 

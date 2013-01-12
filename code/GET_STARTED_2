@@ -6,31 +6,39 @@
 ************
 * Important: whether you are a user or a developer, you are strongly invited not to modify the files contained in code/model/ . 
   This directory is designed to contain the latest version of the model, which is common to every user at a given time.
-  It is henceforth advisable to follow the steps described in "case 0" to modify the model according to your needs.
+  It is henceforth advisable to follow the steps described below to modify the model according to your needs.
 ************
 
 
--------
-It is likely that you will want to run a simulation that is different from the default "wiggle" simulation. To do that, please do not modify code/model/* .
+It is likely that you will want to run a simulation that is different from the default "wiggle" simulation. Here are the steps that will allow you to modify the model according to your needs, say the numerical experiment you want to set will be called expe_Z.
 
-  - Create a directory code/expe_Z , in which you will create two subdirectories inc and src . To do that, in code/, you can use 
+  1 - Go to the " code " directory:
+         ****************************
+         * cd V0....../code/ 
+         ****************************
+
+
+  2 - Create a directory code/expe_Z , with two subdirectories inc and src . To do that, in code/, you can do: 
          ****************************
          * cp -r model_build expe_Z 
          ****************************
 
-  - For instance, if you want to change the initial conditions, copy code/model/src/stprofile_X.f90 to code/expe_Z/src/ . 
+
+  3 - For instance, if you want to change the initial conditions, copy code/model/src/stprofile_X.f90 to code/expe_Z/src/ : 
          ****************************
          * cp model/src/routine_I_want_to_change.f90 expe_Z/src/
          ****************************
 
-  - Alter code/expe_Z/src/stprofile_X.f90 to your convenience.
+
+  4 - Alter code/expe_Z/src/stprofile_X.f90 to your convenience.
          ****************************
          * edit (vi, textedit,...) expe_Z/src/routine_I_want_to_change.f90
          ****************************
 
     The files in ./expe_Z will overtake those from ./model. The next steps detail how to create the executable exe/nh_expe_Z, based on a combination of old and new .f90 files.   
 
-  - In order to compile, you simply have to run
+
+  5 - In order to compile, you simply have to run
    
          ****************************
          * sh tools/compile.sh expe_Z
@@ -42,24 +50,34 @@ It is likely that you will want to run a simulation that is different from the d
 
     Important notice: during the execution of compile.sh, do not interrupt as this script is based on moving files. If it is stopped, your files might be in the wrong place and you would have to manually fix this.
 
-  - To change the output directory, copy namelist to namelist_expe_Z (for instance) and change the variable dirout. The directory you choose must exist.
+
+  6 - To change the output directory (for instance output_expe_Z, any other name works), copy namelist to namelist_expe_Z (for instance) and change the variable dirout. The directory you choose must exist.
 
          ****************************
          * cp namelist namelist_expe_Z
          * edit (vi, textedit, ...) namelist_expe_Z
+         * modify the line dirout=... 
+         * mkdir ../output_expe_Z (if it does not already exists)
          ****************************
 
-  - To run the model, then simply run
+
+  7 - To run the model, then simply run
 
          ****************************
          * ./exe/nh_expe_Z < ./namelist_expe_Z
          ****************************
 
 
-  Some comments:
-   - This procedure enables to simultaneously work on several configurations of the model. You can have as many code/expe_* you want, and using compile.sh, you can create as many nh_expe_* you need.
-   - You can develop a part of the model without losing track of the standard version which is still in code/model. If a new version of the model is released, you can update it by simply copying the code/model directory. Obviously, minor changes might be needed to adapt your versions of the model to the new version.
-   - If you want to share a model setting with a collaborator, you simply have to copy expe_Z, that only contains the files that are specific to your simulation. He should be able to compile and run seamlessly. 
+You can now run your first customized simulation.
+
+* If you want next to refine your experiment "Z", you only have to recompile and run (steps 5 and 7).
+* If you want to create a new experiment "Y", follow the same steps with a new name.
+
+
+Some comments:
+   - This procedure enables to simultaneously work on several configurations of the model. You can have as many code/expe_* (or even code/*) you want. By using compile.sh, you can create as many nh_expe_* you need.
+   - You can develop a part of the model without losing track of the standard version which is still in code/model. If a new version of the model is released, you can update it by simply copying the code/model directory. Obviously, minor changes might be needed (declarations, ...) to adapt your versions of the model to the new version.
+   - If you want to share a model setting with a collaborator, you simply have to send him the directory expe_Z, that only contains the files that are specific to this simulation. He should be able to compile and run seamlessly. 
 
 
 

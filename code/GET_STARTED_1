@@ -10,7 +10,7 @@ Here is the minimal set of actions required prior to start using psom.
 * step 2: By default, psom will produce both binary files and netcdf files. If you do not have netcdf library installed or do not want to use netcdf files, 
 
     - edit the file ./optfile          and set define_netcdf to F.
-    - edit the file ./model/inc/cppdef and undefine output_netcdf: 
+    - edit the file ./model/inc/cppdefs.h and undefine output_netcdf: 
             #define file_output_cdf   by default
             #undef file_output_cdf    if you do not want to use netcdf.
 
