@@ -5,9 +5,11 @@
 
 Here is the minimal set of actions required prior to start using psom.
 
-* step 1: Select the compiler you want to use. To do that, please edit the ./optfile to set the compiler you will use:       fcomp=...  (ifort, pgf95 etc.)
+* step 1: Select the compiler you want to use. 
+  To do that, please edit the ./optfile to set the compiler you will use:       fcomp=...  (ifort, pgf95 etc.)
 
-* step 2: By default, psom will produce both binary files and netcdf files. If you do not have netcdf library installed or do not want to use netcdf files, 
+* step 2: By default, psom will produce both binary files and netcdf files. 
+  If you do not have netcdf library installed or do not want to use netcdf files, 
 
     - edit the file ./optfile          and set define_netcdf to F.
     - edit the file ./model/inc/cppdefs.h and undefine output_netcdf: 
@@ -47,7 +49,9 @@ Some explanations:
     - It modifies ./optfile
     - It modifies ./namelist
 
-  To sum up, if step 3 fails, you might have to install makedepend or install netcdf libraries (in case you want to use netcdf output).
+  To sum up, if step 3 fails, you might have to install makedepend or 
+   install netcdf libraries (in case you want to use netcdf output).
+
   After having done that, repeat step 3. 
 
 * Step 4 will 
@@ -57,7 +61,8 @@ Some explanations:
 
 * Step 5 will start and run the model.
   By default, the output will appear on the screen and the output files will go to ../output/.
-  By default, namelist has some values you might want to change. You can of course change these values by editing namelist and repeat step 4.
+  By default, namelist has some values you might want to change. You can of course 
+    change these values by editing namelist and repeat step 4.
 
 
 If you want to customize later your use of the model, you can of course change manually the ./optfile and ./namelist files.
