@@ -14,7 +14,7 @@ out2d_int=5,
 out3d_int=10,
 pickup_int=1000,
 pickup_step=0,
-dirout="/Users/jgilet/work_on_structure/V0.41/output/"/
+dirout="/Users/jstudent/V0.41/output/"/
 &
 &traj
 NPR=4800,
